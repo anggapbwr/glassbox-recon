@@ -7,6 +7,21 @@ binaries, scope-gated by design.
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.11%2B-yellow.svg)](https://www.python.org/)
 
+## Table of contents
+
+- [Why this exists](#why-this-exists)
+- [60-second quickstart](#60-second-quickstart)
+- [Architecture](#architecture)
+- [What this is NOT](#what-this-is-not)
+- [Commands](#commands)
+- [JSON output and exit codes](#json-output-and-exit-codes)
+- [MCP server (call it from AI assistants)](#mcp-server-call-it-from-ai-assistants)
+- [Development](#development)
+- [Troubleshooting](#troubleshooting)
+- [Contributing](#contributing)
+- [Documentation](#documentation)
+- [License](#license)
+
 ## Why this exists
 
 Most recon frameworks wrap compiled binaries you cannot read. This one is the
@@ -28,6 +43,13 @@ Three design commitments:
 
 ## 60-second quickstart
 
+Requirements:
+
+- Python 3.11+
+- pip
+- Git
+- A scope file (see `examples/scope.example.json`)
+
 ```bash
 git clone https://github.com/anggapbwr/glassbox-recon.git
 cd glassbox-recon
@@ -42,6 +64,12 @@ Run the bundled vulnerable lab (127.0.0.1:8888 only) and scan it:
 python lab/mock_app.py                             # terminal 1
 glassbox probe http://127.0.0.1:8888/ --scope examples/scope.example.json
 ```
+
+Install options:
+
+- `pip install -e .` — install CLI only
+- `pip install -e ".[dev]"` — include test/lint tooling
+- `pip install -e ".[mcp]"` — include MCP server dependency
 
 Real output from that command:
 
@@ -118,6 +146,13 @@ glassbox bust   <url>  --scope <file> [--json] [--wordlist <file>]
 glassbox secrets <path> --scope <file> [--json]  credential scan of a file
 ```
 
+### JSON output and exit codes
+
+- Add `--json` on every command to produce machine-readable output.
+- Scope violations return exit code `2` and no network request is sent.
+- Successful scans return exit code `0` even if findings exist (findings are reported in output).
+- Operational/runtime failures return non-zero exit codes.
+
 ## MCP server (call it from AI assistants)
 
 Phase 4 exposes the same primitives over MCP (stdio) so Claude Desktop, Cursor,
@@ -153,6 +188,26 @@ ruff check . && ruff format --check .       # lint + format gates
 ```
 
 CI runs both gates on Windows and Ubuntu, Python 3.11 and 3.12.
+
+## Troubleshooting
+
+- **`refused: host ... is not in the engagement allowlist`**  
+  Add the target host to your scope file only when you have written authorization.
+- **MCP tools always refuse**  
+  Ensure `GLASSBOX_SCOPE` points to a valid JSON scope file in your MCP client config.
+- **`glassbox` command not found**  
+  Re-activate the virtual environment, then reinstall with `pip install -e .`.
+- **Tests failing locally**  
+  Run from repo root and ensure dev dependencies are installed (`pip install -e ".[dev]"`).
+
+## Contributing
+
+Contributions are welcome for test coverage, rule improvements, and documentation.
+
+1. Fork and create a feature branch.
+2. Keep changes small and include/update tests.
+3. Run `ruff check .`, `ruff format --check .`, and `pytest --cov=glassbox --cov-fail-under=85`.
+4. Open a PR with clear scope, evidence, and any security considerations.
 
 ## Documentation
 
