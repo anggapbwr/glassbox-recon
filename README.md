@@ -178,6 +178,8 @@ CI runs both gates on Windows and Ubuntu, Python 3.11 and 3.12.
 - [docs/PROJECT_SPEC.md](docs/PROJECT_SPEC.md) - the locked build spec
 - [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) - module contracts and data flow
 - [docs/SCOPE_POLICY.md](docs/SCOPE_POLICY.md) - authorization policy and refusal list
+- [docs/BUILD_LOG.md](docs/BUILD_LOG.md) - why it exists, design decisions, engineering lessons
+- [docs/BUGBOUNTY_WORKFLOW.md](docs/BUGBOUNTY_WORKFLOW.md) - using the tool inside a real program
 - [templates/report_template.md](templates/report_template.md) - branded assessment report skeleton (PDF-ready via pandoc)
 
 ## License
