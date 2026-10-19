@@ -17,7 +17,7 @@ def write_scope(path: Path, **overrides: object) -> Path:
         "authorized_by": "pytest",
         "allow": ["127.0.0.1", "localhost", "*.lab.example"],
         "deny": ["prod.lab.example"],
-        "rate_limit_rps": 5,
+        "rate_limit_rps": 1000,  # tests run at full speed; politeness is tested separately
         "allow_mutations": False,
     }
     data.update(overrides)

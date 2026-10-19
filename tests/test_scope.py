@@ -71,7 +71,9 @@ def test_scope_file_rejects_non_list_deny(tmp_path: Path) -> None:
         ScopeGuard(path)
 
 
-def test_properties_exposed(guard: ScopeGuard) -> None:
+def test_properties_exposed(tmp_path: Path) -> None:
+    path = write_scope(tmp_path / "scope.json", rate_limit_rps=5)
+    guard = ScopeGuard(path)
     assert guard.rate_limit == 5.0
     assert guard.mutations_allowed is False
     assert guard.engagement == "unit-tests"
