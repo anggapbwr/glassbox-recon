@@ -1,0 +1,8 @@
+{
+  "engagement": "local-lab-demo",
+  "authorized_by": "operator (self-owned target)",
+  "allow": ["127.0.0.1", "localhost", "*.lab.example"],
+  "deny": ["prod.lab.example"],
+  "rate_limit_rps": 5,
+  "allow_mutations": false
+}

@@ -186,12 +186,12 @@ and as a live integration test target (marked `@pytest.mark.integration`, off by
 ```python
 @dataclass(frozen=True)
 class Finding:
-    rule_id: str          # e.g. "header.hsts.missing"
-    severity: str         # info | low | medium | high
-    target: str           # URL or file path the finding came from
-    description: str      # what was observed
-    evidence: str         # redacted, reproducible snippet (header line, redacted token)
-    remediation: str      # short fix hint
+    rule_id: str  # e.g. "header.hsts.missing"
+    severity: str  # info | low | medium | high
+    target: str  # URL or file path the finding came from
+    description: str  # what was observed
+    evidence: str  # redacted, reproducible snippet (header line, redacted token)
+    remediation: str  # short fix hint
 ```
 
 Findings are immutable and JSON-serializable. Nothing else crosses module boundaries.
