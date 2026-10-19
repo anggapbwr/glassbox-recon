@@ -21,6 +21,9 @@ file - the code's only other answer is "no".
 4. `deny` always wins over `allow`, and `*.example.com` covers subdomains but
    never the bare apex domain.
 5. Every refusal prints the host and the reason, and exits with code 2.
+6. In MCP mode the scope file comes from the operator's `GLASSBOX_SCOPE`
+   environment variable in the client config - never from a tool argument, so
+   an AI client cannot choose, swap, or broaden the scope it is judged against.
 
 ## Refusal list (features that will not be added)
 

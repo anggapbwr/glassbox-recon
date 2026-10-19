@@ -118,6 +118,33 @@ glassbox bust   <url>  --scope <file> [--json] [--wordlist <file>]
 glassbox secrets <path> --scope <file> [--json]  credential scan of a file
 ```
 
+## MCP server (call it from AI assistants)
+
+Phase 4 exposes the same primitives over MCP (stdio) so Claude Desktop, Cursor,
+Hermes, or any MCP client can call them:
+
+```bash
+pip install -e ".[mcp]"        # adds the `mcp` SDK + glassbox-mcp entry point
+```
+
+```json
+{
+  "mcpServers": {
+    "glassbox": {
+      "command": "glassbox-mcp",
+      "env": { "GLASSBOX_SCOPE": "C:/path/to/scope.json" }
+    }
+  }
+}
+```
+
+Tools: `probe`, `crawl`, `bust`, `secrets`, `validate_scope`.
+
+Design note: the scope file is pinned by **the operator** through
+`GLASSBOX_SCOPE` in the client config - it is never a tool argument, so an AI
+calling these tools cannot widen the allowlist. No env var = every tool
+refuses (fail closed, same contract as the CLI).
+
 ## Development
 
 ```bash

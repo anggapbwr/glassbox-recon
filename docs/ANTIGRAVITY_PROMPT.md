@@ -83,8 +83,10 @@ Implement per PROJECT_SPEC.md §4.1–4.3 and the data model in §5:
 
 ## PHASE 4 (optional, only if asked again)
 
-- `glassbox-mcp`: thin MCP server exposing probe/secrets/crawl tools. Separate prompt
-  will be provided — do NOT start this phase unprompted.
+- **IMPLEMENTED - do not rebuild.** `src/glassbox/mcp_server.py` exists (5 tools,
+  `glassbox-mcp` entry point, `GLASSBOX_SCOPE` env pinning, tests in
+  `tests/test_mcp_server.py`). Any Phase 4 instruction now means "modify the
+  existing server", not "create one".
 
 ## WHEN YOU HIT A LIMIT / ERROR
 

@@ -224,8 +224,11 @@ raises `ScopeViolation`.
 Acceptance: `glassbox probe <lab-url> --scope examples/scope.example.json` prints a
 deterministic markdown report.
 **Phase 3 — demo**: lab/mock_app.py + recorded demo section in README + SCOPE_POLICY.md.
-**Phase 4 (optional)**: `glassbox-mcp` — thin MCP server exposing probe/secrets/crawl as
-tools for AI assistants. Only after Phases 0–3 are done.
+**Phase 4 (optional)**: `glassbox-mcp` - thin MCP server exposing probe/secrets/crawl/bust/validate_scope as
+tools for AI assistants. Only after Phases 0-3 are done.
+> **Status: implemented.** `src/glassbox/mcp_server.py` (mcp SDK v2 `MCPServer`, stdio,
+> 5 tools), tests in `tests/test_mcp_server.py`, entry point `glassbox-mcp`, scope pinned
+> via `GLASSBOX_SCOPE` env (never a tool argument).
 
 ## 9. README Rules (enforce in Phase 3)
 

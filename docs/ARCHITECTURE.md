@@ -28,6 +28,7 @@ report.py ──► deterministic Markdown / JSON
 | `bust.py` | Wordlist content discovery + status classification | one `fetch()` per word (injectable) | delay = guard rate limit; errors are misses |
 | `secrets.py` | 17 declarative regex rules over text/files | none | matches redacted before leaving the module |
 | `report.py` | Sort, aggregate, render | none | sorted by severity -> rule_id -> target; same input = byte-equal output |
+| `mcp_server.py` | MCP stdio server wrapping the tools above (Phase 4) | via the wrapped tools | scope pinned by `GLASSBOX_SCOPE` env (operator config), never a tool argument; no env = refuse |
 | `cli.py` | Argument parsing, exit codes | none | every subcommand requires `--scope`; no bypass flag |
 
 ## Cross-cutting decisions
