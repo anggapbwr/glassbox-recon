@@ -24,3 +24,6 @@ Thumbs.db
 # Scan artifacts (never commit target data)
 recon/
 *.log
+
+# Operator-local scope (unrestricted) - the published example stays gated
+scope.local.json

@@ -53,7 +53,7 @@ def test_probe_markdown_output(scope_file: Path, capsys) -> None:
         code = main(["probe", "http://127.0.0.1:8888/", "--scope", str(scope_file)])
     out = capsys.readouterr().out
     assert code == 0
-    assert "Glassbox report" in out
+    assert "Security Assessment Report" in out
     assert "header.csp.missing" in out
     assert "probed http://127.0.0.1:8888/ -> 200" in out
 

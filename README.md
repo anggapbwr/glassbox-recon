@@ -47,13 +47,32 @@ Real output from that command:
 
 ```text
 probed http://127.0.0.1:8888/ -> 200 (21 ms, server=GlassboxLab/0.1 Python/3.14.5)
-# Glassbox report - http://127.0.0.1:8888/
+# Security Assessment Report
 
-- Engagement: local-lab-demo
-- Total findings: 7
-- high: 0 | medium: 2 | low: 4 | info: 1
+| Field | Value |
+|---|---|
+| Engagement | local-lab-demo |
+| Target | http://127.0.0.1:8888/ |
+| Assessment type | Automated reconnaissance & configuration audit |
+| Tool | glassbox-recon 0.1.0 |
+| Generated (UTC) | 2026-10-19T07:11:12+00:00 |
+| Classification | CONFIDENTIAL - for the assessed party only |
 
-### [MEDIUM] header.csp.missing
+## 1. Executive Summary
+
+**7 findings** were confirmed: 0 high, 2 medium, 4 low, 1 info.
+
+Overall risk posture: **MODERATE**.
+
+## 2. Findings Summary
+
+| ID | Severity | Rule | Target |
+|---|---|---|---|
+| F-001 | MEDIUM | header.csp.missing | `http://127.0.0.1:8888/` |
+| F-002 | MEDIUM | header.xfo.missing | `http://127.0.0.1:8888/` |
+| ... | ... | ... | ... |
+
+### F-001 [MEDIUM] header.csp.missing
 - Evidence: `header 'Content-Security-Policy' absent in response`
 ...
 ```
@@ -159,6 +178,7 @@ CI runs both gates on Windows and Ubuntu, Python 3.11 and 3.12.
 - [docs/PROJECT_SPEC.md](docs/PROJECT_SPEC.md) - the locked build spec
 - [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) - module contracts and data flow
 - [docs/SCOPE_POLICY.md](docs/SCOPE_POLICY.md) - authorization policy and refusal list
+- [templates/report_template.md](templates/report_template.md) - branded assessment report skeleton (PDF-ready via pandoc)
 
 ## License
 

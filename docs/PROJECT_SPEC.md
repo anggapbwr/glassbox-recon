@@ -168,8 +168,12 @@ def scan_file(path: Path) -> list[Finding]
 
 ### 4.6 `report.py` + `cli.py` (Phase 2)
 
-- `report.py`: `aggregate(findings) -> MarkdownReport, JsonReport` — deterministic output
-  (sorted by severity then rule id) so reports diff cleanly in git.
+- `report.py`: renders a professional assessment report (cover block with
+  classification, executive summary with risk posture, findings matrix with
+  F-IDs, detailed findings, methodology, scope & limitations, disclaimer) plus a
+  JSON variant for automation. Output is deterministic (sorted by severity then
+  rule id) so retests diff cleanly in git. A brandable PDF-ready skeleton lives
+  in `templates/report_template.md`.
 - `cli.py` commands: `glassbox probe <url>`, `glassbox secrets <path>`,
   `glassbox crawl <url>`, `glassbox bust <url>`, all requiring `--scope <file>`.
   No scope flag = command refuses to run.
